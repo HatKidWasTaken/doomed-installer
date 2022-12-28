@@ -1,13 +1,13 @@
 async function getVersion() {
-    const version = await window.installer.getVersion()
+    const version = await window.chimbaland.getVersion()
 
-    let p = document.querySelector('#version')
+    let p = document.querySelector("#version");
     p.innerHTML = `v${version}`
 }
 
 async function fade(){
-    let overlay = document.querySelector('.overlay')
-    overlay.classList.toggle('after')
+    let overlay = document.querySelector(".overlay");
+    overlay.classList.toggle("after");
 }
 
 async function run(){

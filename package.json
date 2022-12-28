@@ -1,12 +1,12 @@
 {
-  "name": "modpack-installer",
-  "productName": "ModPack Installer",
-  "version": "3.0.0",
-  "description": "ModPack installer for Minecraft.",
+  "name": "doomed-installer",
+  "productName": "DOOMED Installer",
+  "version": "1.0.0",
+  "description": "Instalador de mods de DOOMED",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager ./ --icon ./public/img/icon.ico --out ./bin --overwrite --asar"
+    "build": "electron-packager . --icon ./icon.ico --out ./bin --overwrite --asar"
   },
   "keywords": [],
   "author": "Jleguim",

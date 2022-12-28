@@ -1,6 +1,3 @@
-
-  
-
 ## DOOMED-installer
 > "El flojo trabaja triple" -Un random
 
