@@ -1,7 +1,7 @@
 {
   "name": "doomed-installer",
   "productName": "DOOMED Installer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Instalador de mods de DOOMED",
   "main": "main.js",
   "scripts": {

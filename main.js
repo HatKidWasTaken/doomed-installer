@@ -56,23 +56,20 @@ ipcMain.handle('unzipMods', (event) => {
     return new Promise((resolve, reject) => {
         var zipPath = temp + '\\main.zip' // %temp%/main.zip
         var zip = new admZip(zipPath) // crea zip
+        zip.extractAllTo(mods, true);
 
-        var currentPath = null
-        var entries = zip.getEntries()
-        var regex = /.*[^\/]$/
+        // mover la carpeta mods fuera
+        let modsFiles = fs.readdirSync(path.join(mods + "/doomedmods-main/mods/"))
+        
+        modsFiles.forEach(async (name, i) => {
+            let dir = path.join(mods + "/doomedmods-main/mods/" + `${name}/`)
+            await fs.move(dir, path.join(mods + `/${name}/`), { overwrite: true }).catch(err => console.log(err)) // mover las carpetas de mods al root
 
-        entries.forEach((entry, i) => {
-            if (!entry.entryName.match(regex)) {
-                currentPath = entry.entryName.replace('doomedmods-main/', '')
-                return
-            }
-
-            zip.extractEntryTo(entry, path.join(pz, currentPath), false, true)
-            // console.log('Extracted ' + entry.entryName + ' to ' + path.normalize(chimbaland))
-
-            if (i == entries.length - 1) {
-                fs.rmSync(temp, { recursive: true, force: true })
-                resolve()
+            if(i === modsFiles.length - 1) {
+                fs.rm(path.join(mods + "/doomedmods-main/"), { recursive: true }); // eliminar el directorio extraido restante
+                fs.rmSync(temp, { recursive: true, force: true }); // eliminar el directorio temp
+                        
+                resolve();
             }
         })
     })
